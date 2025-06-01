@@ -1,0 +1,33 @@
+{
+  "name": "back-end-pemula_codingcamp",
+  "version": "1.0.0",
+  "description": "Submission Belajar Back-End Pemula dengan JavaScript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/server.js",
+    "start-dev": "nodemon src/server.js",
+    "lint": "eslint ./"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/choerulram/Back-End-Pemula_CodingCamp.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/choerulram/Back-End-Pemula_CodingCamp/issues"
+  },
+  "homepage": "https://github.com/choerulram/Back-End-Pemula_CodingCamp#readme",
+  "devDependencies": {
+    "@eslint/js": "^8.56.0",
+    "eslint": "^8.56.0",
+    "eslint-config-dicodingacademy": "^0.9.4",
+    "globals": "^14.0.0",
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "@hapi/hapi": "^21.4.0"
+  }
+}
