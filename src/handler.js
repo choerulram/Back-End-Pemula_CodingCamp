@@ -61,13 +61,13 @@ const addBookHandler = (request, h) => {
   books.push(newBook);
 
   const isSuccess = books.filter((book) => book.id === id).length > 0;
-
   if (isSuccess) {
+    // Untuk POST, selalu kembalikan hanya bookId
     const response = h.response({
       status: "success",
       message: "Buku berhasil ditambahkan",
       data: {
-        bookId: id,
+        bookId: id, // Hanya ini yang diperlukan untuk POST
       },
     });
     response.code(201);
@@ -82,4 +82,22 @@ const addBookHandler = (request, h) => {
   return response;
 };
 
-module.exports = { addBookHandler };
+const getAllBooksHandler = (request, h) => {
+  // Map books array to only include id, name, and publisher
+  const simplifiedBooks = books.map((book) => ({
+    id: book.id,
+    name: book.name,
+    publisher: book.publisher,
+  }));
+
+  const response = h.response({
+    status: "success",
+    data: {
+      books: simplifiedBooks,
+    },
+  });
+  response.code(200);
+  return response;
+};
+
+module.exports = { addBookHandler, getAllBooksHandler };
