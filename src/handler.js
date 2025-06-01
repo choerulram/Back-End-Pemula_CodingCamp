@@ -83,8 +83,33 @@ const addBookHandler = (request, h) => {
 };
 
 const getAllBooksHandler = (request, h) => {
-  // Map books array to only include id, name, and publisher
-  const simplifiedBooks = books.map((book) => ({
+  const { name, reading, finished } = request.query;
+
+  let filteredBooks = [...books];
+
+  // Filter by name (case-insensitive)
+  if (name) {
+    filteredBooks = filteredBooks.filter((book) =>
+      book.name.toLowerCase().includes(name.toLowerCase())
+    );
+  }
+
+  // Filter by reading status
+  if (reading !== undefined) {
+    const isReading = reading === "1";
+    filteredBooks = filteredBooks.filter((book) => book.reading === isReading);
+  }
+
+  // Filter by finished status
+  if (finished !== undefined) {
+    const isFinished = finished === "1";
+    filteredBooks = filteredBooks.filter(
+      (book) => book.finished === isFinished
+    );
+  }
+
+  // Map filtered books to only include id, name, and publisher
+  const simplifiedBooks = filteredBooks.map((book) => ({
     id: book.id,
     name: book.name,
     publisher: book.publisher,
